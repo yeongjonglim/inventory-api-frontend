@@ -1,17 +1,17 @@
 <template>
   <div class="q-pa-none" v-if="store.state.user">
-    <q-toolbar class="bg-purple text-white shadow-2">
-      <q-btn flat label="Guan LS Auto Service" />
+    <q-toolbar class="bg-blue-10 text-white shadow-2">
+      <q-btn @click="$router.push('/')" flat label="Guan LS Auto Service" />
       <q-space />
 
       <!--
         notice shrink property since we are placing it
         as child of QToolbar
       -->
-      <q-tabs v-model="tab" shrink stretch>
+      <q-tabs v-model="tab">
         <q-route-tab to="/" label="Home" />
         <q-route-tab to="/about" label="About" />
-        <q-tab @click="store.dispatch('logout')" name="logout" label="Logout" />
+        <q-tab class="bg-negative" @click="store.dispatch('logout')" name="logout" label="Logout" />
       </q-tabs>
     </q-toolbar>
   </div>

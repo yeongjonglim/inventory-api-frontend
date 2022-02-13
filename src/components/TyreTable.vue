@@ -9,6 +9,14 @@
       <!--          v-model:selected="selected"-->
       <!--      >-->
 
+      <template v-slot:top-right>
+        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+      
       <template v-slot:top-row>
         <q-tr>
           <q-td colspan="100%">
@@ -17,17 +25,6 @@
         </q-tr>
       </template>
 
-      <template v-slot:bottom-row>
-        <q-tr>
-          <q-td colspan="100%">
-            Bottom row
-          </q-td>
-        </q-tr>
-      </template>
-
-      <template v-slot:bottom>
-        Bottom
-      </template>
 
     </q-table>
   </div>
