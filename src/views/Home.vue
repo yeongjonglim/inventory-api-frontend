@@ -1,8 +1,11 @@
 <template>
   <main class="home">
-    <h1>Tyres</h1>
+    <Suspense>
+      <TyreTable/>
+    </Suspense>
   </main>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import TyreTable from "@/components/TyreTable.vue";
 </script>

@@ -1,13 +1,25 @@
 <template>
-  <div id="nav" v-if="store.state.user">
-    <router-link to="/">Home</router-link> |
-<!--    <router-link to="/about">About</router-link> | -->
-    <button @click="store.dispatch('logout')">Logout</button>
+  <div class="q-pa-none" v-if="store.state.user">
+    <q-toolbar class="bg-purple text-white shadow-2">
+      <q-btn flat label="Guan LS Auto Service" />
+      <q-space />
+
+      <!--
+        notice shrink property since we are placing it
+        as child of QToolbar
+      -->
+      <q-tabs v-model="tab" shrink stretch>
+        <q-route-tab to="/" label="Home" />
+        <q-route-tab to="/about" label="About" />
+        <q-tab @click="store.dispatch('logout')" name="logout" label="Logout" />
+      </q-tabs>
+    </q-toolbar>
   </div>
   <router-view/>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { onBeforeMount } from "vue"
 import { useStore } from "vuex"
 
@@ -16,27 +28,7 @@ const store = useStore()
 onBeforeMount(() => {
   store.dispatch('fetchUser')
 })
+
+const tab = ref('Home')
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
