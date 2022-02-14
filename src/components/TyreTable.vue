@@ -4,13 +4,16 @@
         title="Tyres"
         :rows="rows"
         :columns="columns"
-        row-key="name">
+        row-key="name"
+        :loading="loading"
+        :filter="filter"
+    >
       <!--          selection="multiple"-->
       <!--          v-model:selected="selected"-->
       <!--      >-->
 
       <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+        <q-input dense debounce="300" v-model="filter" label="Search by tyre size" mask="###-##-##">
           <template v-slot:append>
             <q-icon name="search" />
           </template>
@@ -27,11 +30,37 @@
 
 
     </q-table>
+<!--    <q-grouped-table-->
+<!--        title="Tyres"-->
+<!--        :rows="rows"-->
+<!--        :columns="columns"-->
+<!--        row-key="name">-->
+<!--      &lt;!&ndash;          selection="multiple"&ndash;&gt;-->
+<!--      &lt;!&ndash;          v-model:selected="selected"&ndash;&gt;-->
+<!--      &lt;!&ndash;      >&ndash;&gt;-->
+
+<!--&lt;!&ndash;      <template v-slot:top-right>&ndash;&gt;-->
+<!--&lt;!&ndash;        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">&ndash;&gt;-->
+<!--&lt;!&ndash;          <template v-slot:append>&ndash;&gt;-->
+<!--&lt;!&ndash;            <q-icon name="search" />&ndash;&gt;-->
+<!--&lt;!&ndash;          </template>&ndash;&gt;-->
+<!--&lt;!&ndash;        </q-input>&ndash;&gt;-->
+<!--&lt;!&ndash;      </template>&ndash;&gt;-->
+
+<!--      <template v-slot:top-row>-->
+<!--        <q-tr>-->
+<!--          <q-td colspan="100%">-->
+<!--            Top row-->
+<!--          </q-td>-->
+<!--        </q-tr>-->
+<!--      </template>-->
+<!--    </q-grouped-table>-->
   </div>
 </template>
 
 <script lang="ts" setup>
-import {Tyre, tyreService} from "@/services/tyre-data-service";
+import {Ref, ref} from 'vue'
+import {Tyre, tyreService} from "@/services/tyre-data-service"
 
 const columns = [
   {
@@ -59,13 +88,21 @@ const columns = [
     sortable: true
   }
 ]
+const loading = ref(true)
+const filter = ref('')
+const rows: Ref<Tyre[] | undefined> = ref()
 
-const [error, response] = await tyreService.getTyres()
-if (error)
-{
-  console.log(`Something went wrong: ${error}`)
-}
-const rows = response && response.tyres
+tyreService.getTyres()
+    .then(x => {
+      const [error, data] = x
+      if (error) {
+        console.log(`Something went wrong ${error}`)
+      }
+      rows.value = data && data.tyres
+    })
+    .finally(() => {
+      loading.value = false
+    })
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@ import router from '../router'
 import { User } from 'firebase/auth'
 import { auth, googleAuthProvider } from "@/firebase";
 import {
-  signInWithPopup,
+  signInWithRedirect,
   signOut
 } from 'firebase/auth'
 
@@ -26,7 +26,7 @@ export default createStore({
   actions: {
     async loginWithGoogle({ commit }) {
       try {
-        await signInWithPopup(auth, googleAuthProvider)
+        await signInWithRedirect(auth, googleAuthProvider)
       } catch(error) {
         return
       }

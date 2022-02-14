@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from "axios"
 import { auth } from '@/firebase'
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: `${process.env.VUE_APP_API_BASE_URL}/api`,
 });
 
 axiosInstance.interceptors.request.use(async config => {

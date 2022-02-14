@@ -24,7 +24,7 @@
 
       <template v-slot:header="props">
         <q-tr :props="props">
-          <q-th auto-width v-if="selection_prop!='none'">
+          <q-th auto-width v-if="selection_prop!=='none'">
             <q-checkbox
                 v-if="props.multipleSelect"
                 v-model="props.selected"
@@ -53,7 +53,7 @@
         </q-tr>
         <q-tr v-show="!props.row.isGroupHeader&&props.row.visible" :props="props" >
 
-          <q-td auto-width v-if="selection_prop!='none'">
+          <q-td auto-width v-if="selection_prop!=='none'">
             <q-checkbox :dark="dark" :dense="dense" color="primary" v-model="props.selected"/>
           </q-td>
 
@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'QGroupedTable',
   props:{

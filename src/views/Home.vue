@@ -1,8 +1,6 @@
 <template>
   <main class="home">
-    <Suspense>
-      <TyreTable/>
-    </Suspense>
+    <TyreTable/>
   </main>
 </template>
 
