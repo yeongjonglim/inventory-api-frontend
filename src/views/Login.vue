@@ -16,6 +16,14 @@ const signInWithGoogle = () => {
 </script>
 
 <style>
+.gSignInWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 #googleSignInButton {
   display: inline-block;
   background: white;

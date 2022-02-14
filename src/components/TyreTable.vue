@@ -1,12 +1,13 @@
 <template>
   <div class="q-pa-md">
     <q-table
-        title="Tyres"
+        title="Tyre Catalog"
         :rows="rows"
         :columns="columns"
         row-key="name"
         :loading="loading"
         :filter="filter"
+        :hide-pagination="true"
     >
       <!--          selection="multiple"-->
       <!--          v-model:selected="selected"-->
@@ -65,7 +66,7 @@ import {Tyre, tyreService} from "@/services/tyre-data-service"
 const columns = [
   {
     name: 'name',
-    label: 'Tyre Kind',
+    label: 'Tyre Model',
     align: 'left',
     field: (row: Tyre): string => row.brand + ' ' + row.series,
     format: (val: string): string => val,
