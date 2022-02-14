@@ -20,13 +20,13 @@
         </q-input>
       </template>
       
-      <template v-slot:top-row>
-        <q-tr>
-          <q-td colspan="100%">
-            Top row
-          </q-td>
-        </q-tr>
-      </template>
+<!--      <template v-slot:top-row>-->
+<!--        <q-tr>-->
+<!--          <q-td colspan="100%">-->
+<!--            Top row-->
+<!--          </q-td>-->
+<!--        </q-tr>-->
+<!--      </template>-->
 
 
     </q-table>
