@@ -13,7 +13,7 @@
       <!--      >-->
 
       <template v-slot:top-right>
-        <q-input dense debounce="300" v-model="filter" label="Search by tyre size" mask="###-##-##">
+        <q-input dense debounce="300" v-model="filter" label="Search by tyre size" mask="###-##-##" pattern="[0-9]*">
           <template v-slot:append>
             <q-icon name="search" />
           </template>
